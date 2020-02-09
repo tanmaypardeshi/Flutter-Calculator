@@ -45,6 +45,15 @@ class _MyHomePageState extends State<MyHomePage>
       no2 = 0.0;
       operand = "";
     }
+    else if(buttonText == "<=")
+    {
+      double temp = double.parse(_output);
+      temp = log(temp)/ln10;
+      temp = temp.floor().toDouble();
+      temp = pow(10,temp);
+      temp = double.parse(_output)%temp;
+      _output = temp.toString();
+    }
     else if(buttonText=="+" || buttonText=="-" || buttonText=="x" || buttonText=="/" || buttonText=="%")
     {
       no1 = double.parse(output);
@@ -189,6 +198,7 @@ class _MyHomePageState extends State<MyHomePage>
                   children: <Widget>
                   [
                     buildButton("CLR"),
+                    buildButton("<="),
                     buildButton("="),
                   ],
                 ),
