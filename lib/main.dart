@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage>
   {
     if(buttonText == "CLR")
     {
-      output =  "0";
+      _output =  "0";
       no1 = 0.0;
       no2 = 0.0;
       operand = "";
@@ -158,27 +158,27 @@ class _MyHomePageState extends State<MyHomePage>
         (
           children: <Widget>
           [
-            SizedBox
+            Container
             (
-              height: 245,
-              child: Container
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.symmetric
               (
-                alignment: Alignment.centerRight,
-                padding: EdgeInsets.symmetric
+                vertical: 24.0,
+                horizontal: 12.0,
+              ),
+              child: Text
+              (
+                output,
+                style: TextStyle
                 (
-                  vertical: 24.0,
-                  horizontal: 12.0,
-                ),
-                child: Text
-                (
-                  output,
-                  style: TextStyle
-                  (
-                    fontWeight: FontWeight.bold,
-                    fontSize: 50.0,
-                  ),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
                 ),
               ),
+            ),
+            Expanded
+            (
+              child: Divider()
             ),
             Column
             (
