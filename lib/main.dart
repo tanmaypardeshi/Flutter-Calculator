@@ -158,27 +158,27 @@ class _MyHomePageState extends State<MyHomePage>
         (
           children: <Widget>
           [
-            Container
+            SizedBox
             (
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.symmetric
+              height: 245,
+              child: Container
               (
-                vertical: 24.0,
-                horizontal: 12.0,
-              ),
-              child: Text
-              (
-                output,
-                style: TextStyle
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.symmetric
                 (
-                  fontWeight: FontWeight.bold,
-                  fontSize: 48.0,
+                  vertical: 24.0,
+                  horizontal: 12.0,
+                ),
+                child: Text
+                (
+                  output,
+                  style: TextStyle
+                  (
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50.0,
+                  ),
                 ),
               ),
-            ),
-            Expanded
-            (
-              child: Divider(),
             ),
             Column
             (
