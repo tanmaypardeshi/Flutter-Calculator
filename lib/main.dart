@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage>
   
   buttonPressed(String buttonText)
   {
-    if(buttonText == "C")
+    if(buttonText == "CLR")
     {
       output =  "0";
       no1 = 0.0;
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage>
   {
     return Expanded
     (
-      child: RaisedButton
+      child: OutlineButton 
       (
         padding: EdgeInsets.all(30.0),
         shape: RoundedRectangleBorder
@@ -129,16 +129,17 @@ class _MyHomePageState extends State<MyHomePage>
             
           ),
         ),
+        disabledBorderColor: Colors.white,
+        splashColor: Colors.grey,
         child: Text
         (
           buttonText,
           style: TextStyle
           (
-            color: Colors.black, fontWeight: FontWeight.bold
+            color: Colors.white, fontWeight: FontWeight.bold
           ),
         ),
         onPressed: () => buttonPressed(buttonText),
-        color: Colors.white,
       ),
     );
   }
@@ -167,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage>
               ),
               child: Text
               (
-                "0",
+                output,
                 style: TextStyle
                 (
                   fontWeight: FontWeight.bold,
@@ -187,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage>
                 (
                   children: <Widget>
                   [
-                    buildButton("C"),
+                    buildButton("CLR"),
                     buildButton("="),
                   ],
                 ),
