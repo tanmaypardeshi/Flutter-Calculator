@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +11,14 @@ class MyApp extends StatelessWidget
     return MaterialApp
     (
       title: 'Calculator App',
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+      ),
       home: MyHomePage
       (
         title: 'Calculator App'
@@ -32,11 +38,12 @@ class MyHomePage extends StatefulWidget
 class _MyHomePageState extends State<MyHomePage> 
 {
   String output = "0";
-
+  double temp;
   String _output =  "0";
   double no1 = 0.0;
   double no2 = 0.0;
   String operand = "";
+  bool flag = true;
   
   buttonPressed(String buttonText)
   {
@@ -49,12 +56,71 @@ class _MyHomePageState extends State<MyHomePage>
     }
     else if(buttonText == "<=")
     {
-      double temp = double.parse(_output);
-      temp = log(temp)/ln10;
-      temp = temp.floor().toDouble();
-      temp = pow(10,temp);
-      temp = double.parse(_output)%temp;
-      _output = temp.toString();
+      temp = double.parse(_output);
+      if(temp<0){
+        temp = -temp;
+        flag = false;
+      }
+      if(temp>0)
+      {
+        if(temp.toString() == temp.toInt().toDouble().toString())
+        {
+          temp = temp/10;
+          _output = temp.toInt().toString();
+        }
+        else
+        {
+          double calc = double.parse
+          (
+            (double.parse(temp.toStringAsFixed(2))-double.parse(temp.toStringAsFixed(2)).toInt()).toStringAsFixed(2)
+          );
+          calc *= 10;
+          double calctemp = calc.floor().toDouble();
+          if(calctemp == calc)
+            calc = 0;
+          else
+            calc = calctemp/10;
+          temp = temp.floor().toDouble() + calc;
+          if(!flag)
+            temp = -temp;
+          _output = temp.toString();
+        }
+      }
+      else
+      {
+        _output = "0";
+      }
+    }
+    else if(buttonText == "=>")
+    {
+      flag = true;
+      temp = double.parse(_output);
+      if(temp!=0)
+      {
+        if(temp<0)
+        {
+          temp = -temp;
+          flag = false;
+        }
+        temp = log(temp)/ln10;
+        temp = temp.floor().toDouble();
+        temp = pow(10,temp);
+        temp = double.parse(_output)%temp;
+        if(temp.toString() == temp.toInt().toDouble().toString())
+        {
+          if(!flag)
+            temp = -temp;
+          _output = temp.toInt().toString();
+        }
+        else
+        {
+          if(!flag)
+            temp = -temp;
+          _output = temp.toString();
+        }
+      }
+      else
+        _output = "0";
     }
     else if(buttonText=="+" || buttonText=="-" || buttonText=="x" || buttonText=="/" || buttonText=="%")
     {
@@ -200,6 +266,7 @@ class _MyHomePageState extends State<MyHomePage>
                   children: <Widget>
                   [
                     buildButton("CLR"),
+                    buildButton("=>"),
                     buildButton("<="),
                     buildButton("="),
                   ],
