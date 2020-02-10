@@ -213,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage>
           buttonText,
           style: TextStyle
           (
-            color: Colors.white, fontWeight: FontWeight.bold
+            color: Colors.blue, fontWeight: FontWeight.bold
           ),
         ),
         onPressed: () => buttonPressed(buttonText),
